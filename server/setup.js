@@ -5,7 +5,7 @@ const http = require('http');
 const chalk = require('chalk');
 
 const isProd = process.env.NODE_ENV === 'production';
-const port = process.env.PORT || 3000;
+const port = 4000;
 
 module.exports = function (options) {
   const app = express();

@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-
 import { Todo } from './model';
+import courseApi from './api/mockApi';
 
 import {
   ADD_TODO,
@@ -8,13 +8,20 @@ import {
   EDIT_TODO,
   COMPLETE_TODO,
   COMPLETE_ALL,
-  CLEAR_COMPLETED
+  CLEAR_COMPLETED,
+  GET_TODOS
 } from './constants/ActionTypes';
 
-const addTodo = createAction<Todo, string>(
-  ADD_TODO,
-  (text: string) => ({ text, completed: false })
-);
+
+const getToDos = createAction<any>(
+    GET_TODOS, 
+    () => courseApi.getToDos()
+); 
+
+const addTodo = createAction<any, string>(
+    ADD_TODO, 
+    (string) => courseApi.saveToDo(string)
+); 
 
 const deleteTodo = createAction<Todo, Todo>(
   DELETE_TODO,
@@ -42,6 +49,7 @@ const clearCompleted = createAction<void>(
 );
 
 export {
+  getToDos,
   addTodo,
   deleteTodo,
   editTodo,
