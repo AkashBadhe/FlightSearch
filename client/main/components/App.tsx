@@ -7,13 +7,7 @@ import {
   Header,
   MainSection,
   model,
-  addTodo,
-  editTodo,
-  clearCompleted,
-  completeAll,
-  completeTodo,
-  deleteTodo
-} from '../../todos';
+} from '../../flights';
 
 interface AppProps {
   dispatch: Dispatch<{}>;
@@ -26,12 +20,12 @@ class App extends React.Component<AppProps> {
     return (
       <div className="todoapp">
         <Loader show={iState.loading} message={'loading'}>
-          <Header addTodo={(text: string) => dispatch(addTodo(text))} />
+          <Header addFlight={(text: string) => dispatch(addFlight(text))} />
           <MainSection
-              todos={iState.todos}
-              editTodo={(t,s) => dispatch(editTodo(t, s))}
-              deleteTodo={(t: model.Todo) => dispatch(deleteTodo(t))}
-              completeTodo={(t: model.Todo) => dispatch(completeTodo(t))}
+              flights={iState.flights}
+              editFlight={(t,s) => dispatch(editFlight(t, s))}
+              deleteFlight={(t: model.Flight) => dispatch(deleteFlight(t))}
+              completeFlight={(t: model.Flight) => dispatch(completeFlight(t))}
               clearCompleted={() => dispatch(clearCompleted())}
               completeAll={() => dispatch(completeAll())}/>
         </Loader>
@@ -41,9 +35,9 @@ class App extends React.Component<AppProps> {
 }
 
 const mapStateToProps = state =>{
-  state.todos.loading = state.asyncInitialState.loading || state.todos.loading
+  state.flights.loading = state.asyncInitialState.loading || state.flights.loading
   return {
-    iState: state.todos
+    iState: state.flights
   }
 };
 

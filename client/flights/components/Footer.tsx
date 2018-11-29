@@ -5,7 +5,7 @@ import {
   SHOW_ALL,
   SHOW_COMPLETED,
   SHOW_ACTIVE
-} from '../constants/TodoFilters';
+} from '../constants/FlightFilters';
 
 const FILTER_TITLES = {
   [SHOW_ALL]: 'All',
@@ -23,7 +23,7 @@ interface FooterProps {
 }
 
 class Footer extends React.Component<FooterProps> {
-  renderTodoCount() {
+  renderFlightCount() {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';
 
@@ -62,7 +62,7 @@ class Footer extends React.Component<FooterProps> {
   render() {
     return (
       <footer className="footer">
-        {this.renderTodoCount()}
+        {this.renderFlightCount()}
         <ul className="filters">
           {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
             <li key={filter}>

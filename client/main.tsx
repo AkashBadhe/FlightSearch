@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunkMiddleware from 'redux-thunk';
 import * as asyncInitialState from 'redux-async-initial-state';
-import toDoApi from './todos/api/mockApi';
+import toDoApi from './flights/api/mockApi';
 import Promise from "ts-promise";
 
 
@@ -17,8 +17,8 @@ const initialState = {};
 
 const loadStore = (currentState) => {
   return new Promise(resolve => {
-	toDoApi.getToDos().then((data)=>{
-		resolve({...currentState, todos: {todos: data, loading: false}});
+	toDoApi.getFlights().then((data)=>{
+		resolve({...currentState, flights: {flights: data, loading: false}});
 	});
   });
 }

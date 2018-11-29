@@ -1,27 +1,27 @@
 import * as React from 'react';
 
-import { Todo } from '../model';
-import TodoItem from './TodoItem';
+import { Flight } from '../model';
+import FlightItem from './FlightItem';
 import Footer from './Footer';
 import {
   SHOW_ALL,
   SHOW_COMPLETED,
   SHOW_ACTIVE
-} from '../constants/TodoFilters';
+} from '../constants/FlightFilters';
 
-const TODO_FILTERS = {
+const FLIGHT_FILTERS = {
   [SHOW_ALL]: () => true,
   [SHOW_ACTIVE]: todo => !todo.completed,
   [SHOW_COMPLETED]: todo => todo.completed
 };
 
 interface MainSectionProps {
-  todos: Todo[];
+  flights: Flight[];
   clearCompleted: ()=>void;
   completeAll: ()=>void;
-  editTodo: (todo:Todo, text:string)=>void;
-  completeTodo: (todo:Todo)=>void;
-  deleteTodo: (todo:Todo)=>void;
+  editFlight: (todo:Flight, text:string)=>void;
+  completeFlight: (todo:Flight)=>void;
+  deleteFlight: (todo:Flight)=>void;
 };
 interface MainSectionState {
   filter: string;
@@ -34,7 +34,7 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
   }
 
   handleClearCompleted() {
-    const atLeastOneCompleted = this.props.todos.some(todo => todo.completed);
+    const atLeastOneCompleted = this.props.flights.some(todo => todo.completed);
     if (atLeastOneCompleted) {
       this.props.clearCompleted();
     }
@@ -45,23 +45,23 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
   }
 
   renderToggleAll(completedCount) {
-    const { todos, completeAll } = this.props;
-    if (todos.length > 0) {
+    const { flights, completeAll } = this.props;
+    if (flights.length > 0) {
       return (
         <input className="toggle-all"
                type="checkbox"
-               checked={completedCount === todos.length}
+               checked={completedCount === flights.length}
                onChange={() => completeAll()} />
       );
     }
   }
 
   renderFooter(completedCount) {
-    const { todos } = this.props;
+    const { flights } = this.props;
     const { filter } = this.state;
-    const activeCount = todos.length - completedCount;
+    const activeCount = flights.length - completedCount;
 
-    if (todos.length) {
+    if (flights.length) {
       return (
         <Footer completedCount={completedCount}
                 activeCount={activeCount}
@@ -73,11 +73,11 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
   }
 
   render() {
-    const { todos, completeTodo, deleteTodo, editTodo } = this.props;
+    const { flights, completeFlight, deleteFlight, editFlight } = this.props;
     const { filter } = this.state;
 
-    const filteredTodos = todos.filter(TODO_FILTERS[filter]);
-    const completedCount = todos.reduce((count: number, todo): number =>
+    const filteredFlights = flights.filter(FLIGHT_FILTERS[filter]);
+    const completedCount = flights.reduce((count: number, todo): number =>
       todo.completed ? count + 1 : count,
       0
     );
@@ -86,13 +86,13 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
       <section className="main">
         {this.renderToggleAll(completedCount)}
         <ul className="todo-list">
-          {filteredTodos.map(todo =>
-            <TodoItem
+          {filteredFlights.map(todo =>
+            <FlightItem
               key={todo.id}
               todo={todo}
-              editTodo={editTodo}
-              completeTodo={completeTodo}
-              deleteTodo={deleteTodo}/>
+              editFlight={editFlight}
+              completeFlight={completeFlight}
+              deleteFlight={deleteFlight}/>
           )}
         </ul>
         {this.renderFooter(completedCount)}

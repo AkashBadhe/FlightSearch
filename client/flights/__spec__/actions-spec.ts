@@ -6,13 +6,13 @@
 
 // describe('actions', () => {
 //   // it('creates new todo', () => {
-//   //   const { payload: todo } = actions.addTodo('hello');
+//   //   const { payload: todo } = actions.addFlight('hello');
 
 //   //   expect(todo.text).to.eql('hello');
 //   // });
 
 //   it('deletes todo', () => {
-//     const { payload: todo } = actions.deleteTodo({
+//     const { payload: todo } = actions.deleteFlight({
 //       id: 999,
 //       text: '',
 //       completed: false
@@ -22,7 +22,7 @@
 //   });
 
 //   it('edits todo', () => {
-//     const { payload: todo } = actions.editTodo({
+//     const { payload: todo } = actions.editFlight({
 //       id: 999,
 //       text: 'hi',
 //       completed: false
@@ -31,7 +31,7 @@
 //   });
 
 //   it('completes todo', () => {
-//     const { payload: todo } = actions.completeTodo({
+//     const { payload: todo } = actions.completeFlight({
 //       id: 999,
 //       text: '',
 //       completed: false

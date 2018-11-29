@@ -1,10 +1,10 @@
-export type Todo = {
+export type Flight = {
   id?: number;
   text: string;
   completed: boolean;
 };
 
 export type IState = {
-	todos: Todo[],
+	flights: Flight[],
 	loading?: boolean,
 };

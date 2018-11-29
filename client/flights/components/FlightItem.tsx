@@ -1,21 +1,21 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import { Todo } from '../model';
-import TodoTextInput from './TodoTextInput';
+import { Flight } from '../model';
+import FlightTextInput from './FlightTextInput';
 
-interface TodoItemProps {
-  todo: Todo;
-  editTodo: (todo:Todo, text:string)=>void;
-  deleteTodo: (todo:Todo)=>void;
-  completeTodo: (todo:Todo)=>void;
+interface FlightItemProps {
+  todo: Flight;
+  editFlight: (todo:Flight, text:string)=>void;
+  deleteFlight: (todo:Flight)=>void;
+  completeFlight: (todo:Flight)=>void;
   key?: any;
 }
-interface TodoItemState {
+interface FlightItemState {
   editing: boolean;
 };
 
-class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
+class FlightItem extends React.Component<FlightItemProps, FlightItemState> {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -27,22 +27,22 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
     this.setState({ editing: true });
   }
 
-  handleSave(todo:Todo, text:string) {
+  handleSave(todo:Flight, text:string) {
     if (text.length === 0) {
-      this.props.deleteTodo(todo);
+      this.props.deleteFlight(todo);
     } else {
-      this.props.editTodo(todo, text);
+      this.props.editFlight(todo, text);
     }
     this.setState({ editing: false });
   }
 
   render() {
-    const {todo, completeTodo, deleteTodo} = this.props;
+    const {todo, completeFlight, deleteFlight} = this.props;
 
     let element;
     if (this.state.editing) {
       element = (
-        <TodoTextInput text={todo.text}
+        <FlightTextInput text={todo.text}
                        editing={this.state.editing}
                        onSave={(text) => this.handleSave(todo, text)}/>
       );
@@ -52,12 +52,12 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
           <input className="toggle"
                  type="checkbox"
                  checked={todo.completed}
-                 onChange={() => completeTodo(todo)} />
+                 onChange={() => completeFlight(todo)} />
           <label onDoubleClick={this.handleDoubleClick.bind(this)}>
             {todo.text}
           </label>
           <button className="destroy"
-                  onClick={() => deleteTodo(todo)} />
+                  onClick={() => deleteFlight(todo)} />
         </div>
       );
     }
@@ -73,4 +73,4 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
   }
 }
 
-export default TodoItem;
+export default FlightItem;

@@ -1,18 +1,18 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-interface TodoTextInputProps {
+interface FlightTextInputProps {
   onSave: (text:string)=>void;
   text?: string;
   placeholder?: string,
   editing?: boolean;
-  newTodo?: boolean;
+  newFlight?: boolean;
 }
-interface TodoTextInputState {
+interface FlightTextInputState {
   text: string;
 }
 
-class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputState> {
+class FlightTextInput extends React.Component<FlightTextInputProps, FlightTextInputState> {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -24,7 +24,7 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
     const text = e.target.value.trim();
     if (e.which === 13) {
       this.props.onSave(text);
-      if (this.props.newTodo) {
+      if (this.props.newFlight) {
         this.setState({ text: '' });
       }
     }
@@ -35,7 +35,7 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
   }
 
   handleBlur(e) {
-    if (!this.props.newTodo) {
+    if (!this.props.newFlight) {
       this.props.onSave(e.target.value);
     }
   }
@@ -45,7 +45,7 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
       <input className={
         classNames({
           edit: this.props.editing,
-          'new-todo': this.props.newTodo
+          'new-todo': this.props.newFlight
         })}
         type="text"
         placeholder={this.props.placeholder}
@@ -59,4 +59,4 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
 }
 
 
-export default TodoTextInput;
+export default FlightTextInput;

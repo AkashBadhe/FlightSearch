@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import todos from '../todos';
+import flights from '../flights';
 import * as asyncInitialState from 'redux-async-initial-state';
 
 const rootReducer = asyncInitialState.outerReducer(combineReducers({
-  todos,
+  flights,
   asyncInitialState: asyncInitialState.innerReducer,
 }));
 
