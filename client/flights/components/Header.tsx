@@ -1,26 +1,28 @@
 import * as React from 'react';
+import Select from 'react-select';
 
 import FlightTextInput from './FlightTextInput';
 
 interface HeaderProps {
-  addFlight: (text:string)=> any;
-};
+  selectedOption: string[];
+  options: string[];
+  handleChange: (e) => any;
+}
 
-class Header extends React.Component<HeaderProps> {
-  handleSave(text: string) {
-    if (text.length !== 0) {
-      this.props.addFlight(text);
-    }
-  }
-
+class Header extends React.Component<HeaderProps>{
   render() {
+    const { selectedOption, options, handleChange } = this.props;
     return (
       <header className="header">
-          <h1>flights</h1>
-          <FlightTextInput
-            newFlight
-            onSave={this.handleSave.bind(this)}
-            placeholder="What needs to be done?" />
+        <div className="">
+          <Select
+            value={selectedOption}
+            onChange={(e) => handleChange(e)}
+            options={options}
+            closeMenuOnSelect={false}
+            isMulti
+          />
+        </div>
       </header>
     );
   }

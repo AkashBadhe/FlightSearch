@@ -1,7 +1,2 @@
-export const ADD_FLIGHT = 'ADD_FLIGHT';
-export const DELETE_FLIGHT = 'DELETE_FLIGHT';
-export const EDIT_FLIGHT = 'EDIT_FLIGHT';
-export const COMPLETE_FLIGHT = 'COMPLETE_FLIGHT';
-export const COMPLETE_ALL = 'COMPLETE_ALL';
-export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 export const GET_FLIGHTS = 'GET_FLIGHTS';
+export const UPDATE_CITY_FILTER = "UPDATE_CITY_FILTER";
