@@ -15,7 +15,7 @@ class MainSection extends React.Component<MainSectionProps> {
   render() {
     const { flights } = this.props;
     return (
-      <section className="main">
+      <section>
         {flights && flights.length && flights.map(flight =>
           <FlightItem
             key={"flight-item-" + flight.id}

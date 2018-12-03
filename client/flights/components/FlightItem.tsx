@@ -4,6 +4,10 @@ import * as classNames from 'classnames';
 import { Flight } from '../model';
 import FlightTextInput from './FlightTextInput';
 
+let moment = require("moment");
+if ("default" in moment) {
+    moment = moment["default"];
+}
 interface FlightItemProps {
   flight: Flight;
 }
@@ -11,6 +15,10 @@ interface FlightItemProps {
 class FlightItem extends React.Component<FlightItemProps> {
   constructor(props, context) {
     super(props, context);
+  }
+
+  formatDate = (date) =>{
+    return moment(date).format("ddd DD MMM");
   }
 
   render() {
@@ -29,7 +37,7 @@ class FlightItem extends React.Component<FlightItemProps> {
             </div>
             <div className="col">
               <div className="row">
-                {flight.departure} - {flight.airline}
+                {this.formatDate(flight.departure)} - {this.formatDate(flight.arrival)}
               </div>
               <div className="row">
                 {flight.airline}

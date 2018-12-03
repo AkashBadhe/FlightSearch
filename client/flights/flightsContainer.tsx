@@ -8,14 +8,15 @@ import {
     MainSection,
     model,
     getFlights,
-    updateCityFilter
+    updateCityFilter,
+    updateDateFilter
 } from './index';
 
 interface FlightsContainerProps {
     dispatch: Dispatch<{}>;
     flights: model.Flight[];
     selectedCities: string[];
-    selectedDate: string;
+    selectedDate: Date;
     loading: boolean,
     filteredFlights: model.Flight[]
 }
@@ -27,7 +28,8 @@ class Flights extends React.Component<FlightsContainerProps> {
     }
 
     handleDateChange = (e) => {
-
+        this.props.dispatch(updateDateFilter(e))
+        console.log(e);
     }
 
     getOptions = () => {
@@ -51,6 +53,8 @@ class Flights extends React.Component<FlightsContainerProps> {
                     options={this.getOptions()}
                     selectedOption={selectedCities}
                     handleChange={(e) => this.handleCityChange(e)}
+                    handleDateChange={(e) => this.handleDateChange(e)}
+                    selectedDate={selectedDate}
                 />
                 <MainSection
                     flights={filteredFlights} />

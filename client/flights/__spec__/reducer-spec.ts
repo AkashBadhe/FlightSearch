@@ -6,12 +6,10 @@
 // import { Flight } from '../model';
 
 // import {
-//   ADD_FLIGHT,
-//   DELETE_FLIGHT,
-//   EDIT_FLIGHT,
-//   COMPLETE_FLIGHT,
-//   COMPLETE_ALL,
-//   CLEAR_COMPLETED
+//   GET_FLIGHTS,
+//   UPDATE_CITY_FILTER,
+//   UPDATE_DATE_FILTER
+
 // } from '../constants/ActionTypes';
 
 // describe('todo reducer', () => {

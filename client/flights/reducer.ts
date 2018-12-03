@@ -1,9 +1,15 @@
 import { handleActions, Action } from 'redux-actions';
-
 import { Flight, IState } from './model';
+
+let moment = require("moment");
+if ("default" in moment) {
+    moment = moment["default"];
+}
+
 import {
   GET_FLIGHTS,
-  UPDATE_CITY_FILTER
+  UPDATE_CITY_FILTER,
+  UPDATE_DATE_FILTER
 } from './constants/ActionTypes';
 
 const initialState: IState = {
@@ -45,4 +51,15 @@ export default handleActions<IState, Flight>({
       }) : state.flights
     }
   },
+
+  [UPDATE_DATE_FILTER]: (state: IState, action: Action<any>): IState => {
+    return {
+      ...state,
+      selectedDate: action.payload,
+      filteredFlights: state.filteredFlights.filter((flight) =>{
+        return moment(action.payload).isSameOrAfter(flight.departure);
+      })
+    }
+  },
+
 }, initialState);
